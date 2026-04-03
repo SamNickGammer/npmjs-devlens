@@ -1,10 +1,10 @@
-# DevLens
+# DevLens Inspector
 
 > In-app network, log, and error inspector for React, Next.js, and React Native.
 
-`DevLens` helps you inspect what your app is doing without opening external devtools every time. Wrap your app once, then view API requests, responses, headers, console logs, and runtime errors from a floating launcher or an embedded panel.
+`DevLens Inspector` helps you inspect what your app is doing without opening external devtools every time. Wrap your app once, then view API requests, responses, headers, console logs, and runtime errors from a floating launcher or an embedded panel.
 
-## Why DevLens?
+## Why DevLens Inspector?
 
 Frontend and mobile teams often lose time jumping between:
 
@@ -14,7 +14,7 @@ Frontend and mobile teams often lose time jumping between:
 - temporary `console.log()` statements
 - custom debug screens built again and again
 
-`DevLens` brings those signals into the app itself.
+`DevLens Inspector` brings those signals into the app itself.
 
 ## Features
 
@@ -40,7 +40,7 @@ Frontend and mobile teams often lose time jumping between:
 ## Installation
 
 ```bash
-npm install devlens
+npm install devlens-inspector
 ```
 
 ## Quick Start
@@ -48,8 +48,8 @@ npm install devlens
 ### React / Web
 
 ```tsx
-import { DevLensProvider } from "devlens";
-import { DevLensFloatingButton } from "devlens/web";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensFloatingButton } from "devlens-inspector/web";
 
 export function App() {
   return (
@@ -64,8 +64,8 @@ export function App() {
 ### Embedded Panel
 
 ```tsx
-import { DevLensProvider } from "devlens";
-import { DevLensPanel } from "devlens/web";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensPanel } from "devlens-inspector/web";
 
 export function App() {
   return (
@@ -80,8 +80,8 @@ export function App() {
 ### React Native
 
 ```tsx
-import { DevLensProvider } from "devlens";
-import { DevLensFloatingButton } from "devlens/react-native";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensFloatingButton } from "devlens-inspector/react-native";
 
 export function App() {
   return (
@@ -103,7 +103,7 @@ npm does not support true interactive tabs in README files, so the sections belo
 ### 1. Install
 
 ```bash
-npm install devlens
+npm install devlens-inspector
 ```
 
 ### 2. Wrap your app
@@ -111,8 +111,8 @@ npm install devlens
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { DevLensProvider } from "devlens";
-import { DevLensFloatingButton } from "devlens/web";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensFloatingButton } from "devlens-inspector/web";
 import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -141,18 +141,18 @@ You should see:
 ### 1. Install
 
 ```bash
-npm install devlens
+npm install devlens-inspector
 ```
 
 ### 2. Use it inside a client component
 
-Because `DevLens` uses hooks and browser APIs, place it in a client component.
+Because `DevLens Inspector` uses hooks and browser APIs, place it in a client component.
 
 ```tsx
 "use client";
 
-import { DevLensProvider } from "devlens";
-import { DevLensFloatingButton, DevLensPanel } from "devlens/web";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensFloatingButton, DevLensPanel } from "devlens-inspector/web";
 
 export function DebugShell({ children }: { children: React.ReactNode }) {
   return (
@@ -201,14 +201,14 @@ If you want a working example, check:
 ### 1. Install
 
 ```bash
-npm install devlens
+npm install devlens-inspector
 ```
 
 ### 2. Wrap your app root
 
 ```tsx
-import { DevLensProvider } from "devlens";
-import { DevLensFloatingButton } from "devlens/react-native";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensFloatingButton } from "devlens-inspector/react-native";
 
 export default function App() {
   return (
@@ -238,7 +238,7 @@ Tap the floating button to open the built-in inspector panel.
 
 ## How It Works
 
-`DevLens` patches global `fetch` and listens to console/error events while your app is running.
+`DevLens Inspector` patches global `fetch` and listens to console/error events while your app is running.
 
 Captured events are stored in memory and shown through:
 
@@ -270,7 +270,7 @@ Wrap your application with `DevLensProvider` to start tracking.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `enabled` | `boolean` | `true` | Enable or disable DevLens |
+| `enabled` | `boolean` | `true` | Enable or disable DevLens Inspector |
 | `trackConsole` | `boolean` | `true` | Capture console events |
 | `trackErrors` | `boolean` | `true` | Capture runtime errors |
 | `trackNetwork` | `boolean` | `true` | Capture `fetch` requests |
@@ -284,7 +284,7 @@ Wrap your application with `DevLensProvider` to start tracking.
 ### Web
 
 ```tsx
-import { DevLensFloatingButton, DevLensPanel } from "devlens/web";
+import { DevLensFloatingButton, DevLensPanel } from "devlens-inspector/web";
 ```
 
 - `DevLensFloatingButton`: floating launcher that opens the inspector
@@ -293,7 +293,7 @@ import { DevLensFloatingButton, DevLensPanel } from "devlens/web";
 ### React Native
 
 ```tsx
-import { DevLensFloatingButton, DevLensPanel } from "devlens/react-native";
+import { DevLensFloatingButton, DevLensPanel } from "devlens-inspector/react-native";
 ```
 
 - `DevLensFloatingButton`: draggable floating trigger
@@ -320,8 +320,8 @@ import { DevLensFloatingButton, DevLensPanel } from "devlens/react-native";
 ### Embedded debug page
 
 ```tsx
-import { DevLensProvider } from "devlens";
-import { DevLensPanel } from "devlens/web";
+import { DevLensProvider } from "devlens-inspector";
+import { DevLensPanel } from "devlens-inspector/web";
 
 export default function DebugPage() {
   return (
@@ -354,7 +354,7 @@ http://localhost:3000
 
 ## Notes
 
-- `DevLens` currently tracks global `fetch`
+- `DevLens Inspector` currently tracks global `fetch`
 - `axios` interception is not included yet
 - recommended for development, staging, internal QA, and test builds
 - avoid exposing debug tooling in public production builds unless you intentionally control access
