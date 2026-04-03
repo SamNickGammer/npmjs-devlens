@@ -1,8 +1,17 @@
 {
-  "name": "devlens",
+  "name": "devlens-inspector",
   "version": "0.1.0",
   "description": "In-app network, log, and error inspector for React Native and React apps.",
   "license": "MIT",
+  "author": "Om Prakash Bharati",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamNickGammer/npmjs-devlens.git"
+  },
+  "homepage": "https://github.com/SamNickGammer/npmjs-devlens#readme",
+  "bugs": {
+    "url": "https://github.com/SamNickGammer/npmjs-devlens/issues"
+  },
   "sideEffects": false,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
