@@ -4,6 +4,8 @@
 
 `DevLens Inspector` helps you inspect what your app is doing without opening external devtools every time. Wrap your app once, then view API requests, responses, headers, console logs, and runtime errors from a floating launcher or an embedded panel.
 
+![DevLens Inspector](./devlens-inspector.png)
+
 ## Why DevLens Inspector?
 
 Frontend and mobile teams often lose time jumping between:
