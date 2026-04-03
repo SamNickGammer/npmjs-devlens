@@ -1,6 +1,6 @@
 {
   "name": "devlens-inspector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "In-app network, log, and error inspector for React Native and React apps.",
   "license": "MIT",
   "author": "Om Prakash Bharati",
