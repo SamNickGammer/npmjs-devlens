@@ -17,6 +17,14 @@ export class DevLensStore {
   private entries: DevLensEntry[] = [];
   private listeners = new Set<() => void>();
   private config: DevLensConfig = DEFAULT_CONFIG;
+  private snapshot: DevLensSnapshot = {
+    entries: [],
+    counts: {
+      network: 0,
+      log: 0,
+      error: 0,
+    },
+  };
 
   configure(config: DevLensConfig) {
     this.config = { ...DEFAULT_CONFIG, ...config };
@@ -30,11 +38,13 @@ export class DevLensStore {
   addEntry(entry: DevLensEntry) {
     const maxEntries = this.config.maxEntries ?? DEFAULT_CONFIG.maxEntries;
     this.entries = [entry, ...this.entries].slice(0, maxEntries);
+    this.snapshot = this.createSnapshot();
     this.emit();
   }
 
   clear() {
     this.entries = [];
+    this.snapshot = this.createSnapshot();
     this.emit();
   }
 
@@ -46,6 +56,16 @@ export class DevLensStore {
   }
 
   getSnapshot(): DevLensSnapshot {
+    return this.snapshot;
+  }
+
+  private emit() {
+    for (const listener of this.listeners) {
+      listener();
+    }
+  }
+
+  private createSnapshot(): DevLensSnapshot {
     return {
       entries: this.entries,
       counts: {
@@ -54,12 +74,6 @@ export class DevLensStore {
         error: this.entries.filter((item) => item.kind === "error").length,
       },
     };
-  }
-
-  private emit() {
-    for (const listener of this.listeners) {
-      listener();
-    }
   }
 }
 

@@ -7,12 +7,19 @@ type CleanupFn = () => void;
 let activeCleanup: CleanupFn | null = null;
 
 function addLog(level: DevLensLogEntry["level"], args: unknown[]) {
-  const message = args.map((arg) => stringifyForDisplay(arg)).join(" ");
+  const sanitizedArgs = args.map((arg) => {
+    try {
+      return JSON.parse(stringifyForDisplay(arg));
+    } catch {
+      return stringifyForDisplay(arg);
+    }
+  });
+  const message = sanitizedArgs.map((arg) => stringifyForDisplay(arg)).join(" ");
   devLensStore.addEntry({
     id: nowId(),
     kind: "log",
     level,
-    args,
+    args: sanitizedArgs,
     message,
     timestamp: Date.now(),
   });
@@ -26,7 +33,7 @@ function addError(error: Partial<DevLensErrorEntry> & Pick<DevLensErrorEntry, "m
     name: error.name ?? "Error",
     message: error.message,
     stack: error.stack,
-    cause: error.cause,
+    cause: error.cause ? stringifyForDisplay(error.cause) : undefined,
   });
 }
 

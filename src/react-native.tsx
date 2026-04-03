@@ -5,10 +5,11 @@ import type { GestureResponderEvent, PanResponderGestureState } from "react-nati
 import { Animated, PanResponder, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useDevLensActions, useDevLensSnapshot } from "./core/context";
 import type { DevLensEntry } from "./core/types";
+import { stringifyForDisplay } from "./core/utils";
 import { formatTime, summarizeEntry } from "./components/common";
 
 function detailText(entry: DevLensEntry) {
-  return JSON.stringify(entry, null, 2);
+  return stringifyForDisplay(entry);
 }
 
 export function DevLensPanel() {

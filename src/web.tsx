@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { useDevLensActions, useDevLensSnapshot } from "./core/context";
 import type { DevLensEntry } from "./core/types";
+import { stringifyForDisplay } from "./core/utils";
 import { formatTime, summarizeEntry } from "./components/common";
 
 const shellStyle: CSSProperties = {
@@ -17,7 +18,7 @@ const shellStyle: CSSProperties = {
 };
 
 function detailText(entry: DevLensEntry) {
-  return JSON.stringify(entry, null, 2);
+  return stringifyForDisplay(entry);
 }
 
 export function DevLensPanel() {
